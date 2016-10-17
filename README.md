@@ -15,7 +15,7 @@
 * [Request](https://github.com/request/request)
 * [Socket.io](http://socket.io/)
 
-## Session plan
+## Session Plan
 In this session we will use Node.js/Express to create a chat bot service that integrates with
 Facebook's Messenger API as well as a custom front end using web sockets.
 
