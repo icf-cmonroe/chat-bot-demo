@@ -1,0 +1,29 @@
+{
+  "name": "Chat Bot Demo",
+  "description": "Chat Bot Demo - TCM 12",
+  "keywords": [
+    "node",
+    "express",
+    "bot",
+    "chatbot",
+    "demo"
+  ],
+  "website": "https://github.com/kvbutler/chat-bot-demo",
+  "repository": "https://github.com/kvbutler/chat-bot-demo",
+  "logo": "https://github.com/kvbutler/images/blob/master/robot-design.png",
+  "success_url": "/chat",
+  "image": "heroku/nodejs",
+  "addons": [
+    "openredis",
+    {
+      "plan": "mongolab:shared-single-small",
+      "as": "MONGO"
+    },
+    {
+      "plan": "heroku-postgresql",
+      "options": {
+        "version": "9.5"
+      }
+    }
+  ]
+}
