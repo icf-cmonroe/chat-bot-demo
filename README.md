@@ -1,5 +1,4 @@
 # Tech Crunch Munch 12
-Inline-style: 
 ![alt text](https://github.com/kvbutler/images/blob/master/robot-design.png "Robot Image")
 
 
