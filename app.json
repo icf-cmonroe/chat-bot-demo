@@ -12,5 +12,8 @@
   "repository": "https://github.com/kvbutler/chat-bot-demo",
   "logo": "https://s18.postimg.org/gizepuejt/robot_design.png",
   "success_url": "/chat",
-  "image": "heroku/nodejs"
+  "image": "heroku/nodejs",
+  "scripts": {
+    "postdeploy": "npm install"
+  }
 }

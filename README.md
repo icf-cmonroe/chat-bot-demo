@@ -6,7 +6,6 @@
 * [Node.js](https://nodejs.org/en/)
 * Heroku
     - [Create free account](https://signup.heroku.com/)
-    - [Get Heroku Command Line](https://devcenter.heroku.com/articles/heroku-command-line)
 * [Git client](https://git-scm.com/downloads)
 * [Verified Facebook account](https://www.facebook.com/help/340473306024822?helpref=faq_content)
 
@@ -15,8 +14,7 @@
 * Heroku
 * Node.js
 * [Express](http://expressjs.com/)
-* [Request](https://github.com/request/request)
-* [Socket.io](http://socket.io/)
+* [BotKit](https://github.com/howdyai/botkit)
 
 ## Session Plan
 In this session we will use Node.js/Express to create a chat bot service that integrates with
