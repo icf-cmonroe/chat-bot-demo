@@ -18,6 +18,6 @@
 
 ## Session Plan
 In this session we will use Node.js/Express to create a chat bot service that integrates with
-Facebook's Messenger API as well as a custom front end using web sockets.
+Facebook's Messenger API using the BotKit tool.
 
 ### Fork and clone this entire repository
