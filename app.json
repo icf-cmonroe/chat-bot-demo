@@ -10,7 +10,7 @@
   ],
   "website": "https://github.com/kvbutler/chat-bot-demo",
   "repository": "https://github.com/kvbutler/chat-bot-demo",
-  "logo": "https://github.com/kvbutler/images/blob/master/robot-design.png",
+  "logo": "https://postimg.org/image/xjiayirl1/",
   "success_url": "/chat",
   "image": "heroku/nodejs",
   "addons": [
