@@ -17,9 +17,7 @@ app.use(express.static(path.join(__dirname, '/public')));
 
 
 // Register endpoints
-app.get('/', function (req, res) {
-    res.render('index', { title: 'Chat Bot' });
-});
+app.get('/', routes.home);
 app.get('/chat', routes.chat);
 
 
@@ -33,24 +31,24 @@ app.use(function(req, res, next) {
 // error handlers
 
 // development error handler
-// if (app.get('env') === 'development') {
-//   app.use(function(err, req, res, next) {
-//     res.status(err.status || 500);
-//     res.render('error', {
-//       message: err.message,
-//       error: err
-//     });
-//   });
-// }
+if (app.get('env') === 'development') {
+  app.use(function(err, req, res, next) {
+    res.status(err.status || 500);
+    res.render('error', {
+      message: err.message,
+      error: err
+    });
+  });
+}
 
 // production error handler
-// app.use(function(err, req, res, next) {
-//   res.status(err.status || 500);
-//   res.render('error', {
-//     message: err.message,
-//     error: {}
-//   });
-// });
+app.use(function(err, req, res, next) {
+  res.status(err.status || 500);
+  res.render('error', {
+    message: err.message,
+    error: {}
+  });
+});
 
 
 app.listen(80, function() {
