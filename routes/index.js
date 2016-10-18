@@ -11,5 +11,5 @@ exports.home = function (req, res) {
  */
 
 exports.chat = function (req, res) {
-    res.render('chat', { title: 'Chat Bot' });
+    res.render('index', { title: 'Chat Bot' });
 };
