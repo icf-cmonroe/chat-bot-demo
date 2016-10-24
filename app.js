@@ -58,4 +58,6 @@ app.use(function(err, req, res, next) {
 app.listen(process.env.PORT || 80, function() {
     console.log('Server running on port ' + (process.env.PORT || 80));
     console.log('Mongodb driver: ') + process.env.MONGODB_URI;
+    console.log('Page access token: ') + process.env.PAGE_ACCESS_TOKEN;
+    console.log('Verify token: ') + process.env.VERIFY_TOKEN;
 });
