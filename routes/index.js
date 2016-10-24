@@ -20,7 +20,7 @@ exports.chat = function (req, res) {
  * POST Subscribe webhook
  */ 
 exports.fbSubscribeWebhook = function(req, res) {
-    console.log(JSON.stringify(req));
+    console.log('verify token: ' + req.query['hub.verify_token']);
     if (req.query['hub.mode'] === 'subscribe' && req.query['hub.verify_token'] === process.env.VERIFY_TOKEN) {
       res.send(req.query['hub.challenge']);
     }

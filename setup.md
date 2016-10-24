@@ -1,8 +1,8 @@
 ### Create a Facebook Page for your bot
 
 * [Create Facebook Page](https://www.facebook.com/pages/create/)
-* Click brand or product and select "App Page" from the dropdown
-* Name you page and click get started
+* Click "Brand or Product" and select "App Page" from the dropdown
+* Name your page and click get started
 * Skip through the next four screens or fill in relevent information
 
 ### Create a Facebook App
@@ -44,4 +44,4 @@
 * Fill in the following fields
 ![alt text](https://github.com/kvbutler/images/blob/master/webhook-options.png "Webhook options")
 * Click "Verify and Save"
-* Congrats! Services Connected. ![alt text](https://github.com/kvbutler/images/blob/master/happy-robot.png "Success options")
+* Congrats! Services Connected. ![alt text](https://github.com/kvbutler/images/blob/master/robot-happy.png "Success options")
