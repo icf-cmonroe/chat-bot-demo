@@ -41,68 +41,68 @@ var handler = function(msg) {
             // Iterate over each message and create message for botkit api
             pageEntry.messaging.forEach(function(message) {
                 // Received a normal message
-                if (pageEntry.message) {
+                if (message.message) {
                     message = {
-                        text: pageEntry.message.text,
-                        user: pageEntry.sender.id,
-                        channel: pageEntry.sender.id,
-                        timestamp: pageEntry.timestamp,
-                        seq: pageEntry.message.seq,
-                        mid: pageEntry.message.mid,
-                        attachments: pageEntry.message.attachments
+                        text: message.message.text,
+                        user: message.sender.id,
+                        channel: message.sender.id,
+                        timestamp: message.timestamp,
+                        seq: message.message.seq,
+                        mid: message.message.mid,
+                        attachments: message.message.attachments
                     }
 
                     // Save user
-                    createUser(pageEntry.sender.id, pageEntry.timestamp)
+                    createUser(message.sender.id, message.timestamp)
                         // Send message to bot controller
                     controller.receiveMessage(bot, message)
                 }
                 // User clicks postback action (button)
-                else if (pageEntry.postback) {
+                else if (message.postback) {
                     message = {
-                            payload: pageEntry.postback.payload,
-                            user: pageEntry.sender.id,
-                            channel: pageEntry.sender.id,
-                            timestamp: pageEntry.timestamp
+                            payload: message.postback.payload,
+                            user: message.sender.id,
+                            channel: message.sender.id,
+                            timestamp: message.timestamp
                         }
                     // Send postback to bot controller
                     controller.trigger('facebook_postback', [bot, message])
                     // Send message to bot controller
                     message = {
-                        text: pageEntry.postback.payload,
-                        user: pageEntry.sender.id,
-                        channel: pageEntry.sender.id,
-                        timestamp: pageEntry.timestamp
+                        text: message.postback.payload,
+                        user: message.sender.id,
+                        channel: message.sender.id,
+                        timestamp: message.timestamp
                     }
 
                     controller.receiveMessage(bot, message)
                 }
                 // "Send to Messanger" plugin support
-                else if (pageEntry.optin) {
+                else if (message.optin) {
                     message = {
-                        optin: pageEntry.optin,
-                        user: pageEntry.sender.id,
-                        channel: pageEntry.sender.id,
-                        timestamp: pageEntry.timestamp
+                        optin: message.optin,
+                        user: message.sender.id,
+                        channel: message.sender.id,
+                        timestamp: message.timestamp
                     }
 
                     // Save user
-                    createUser(pageEntry.sender.id, pageEntry.timestamp)
+                    createUser(message.sender.id, message.timestamp)
 
                     controller.trigger('facebook_optin', [bot, message])
                 }
                 // Message delivered callback
-                else if (pageEntry.delivery) {
+                else if (message.delivery) {
                     message = {
-                        optin: pageEntry.delivery,
-                        user: pageEntry.sender.id,
-                        channel: pageEntry.sender.id,
-                        timestamp: pageEntry.timestamp
+                        optin: message.delivery,
+                        user: message.sender.id,
+                        channel: message.sender.id,
+                        timestamp: message.timestamp
                     }
 
                     controller.trigger('message_delivered', [bot, message])
                 } else {
-                    controller.log('Got an unexpected message from Facebook: ', pageEntry)
+                    controller.log('Got an unexpected message from Facebook: ', message)
                 }
             });
         });
