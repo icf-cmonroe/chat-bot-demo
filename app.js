@@ -12,36 +12,30 @@ var app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
+// Parsing
 app.use(bodyParser.json());
-app.use(express.static(path.join(__dirname, '/public')));
+app.use(bodyParser.urlencoded({ extended: true }));
 
+// Expose 'public' directory
+app.use(express.static(path.join(__dirname, '/public')));
 
 // Register endpoints
 app.get('/', routes.home);
 app.get('/chat', routes.chat);
-app.post('webhook', routes.webhook);
+app.get('fbwebhook', routes.fbSubscribeWebhook); // For webhook subscribe
+app.post('fbwebhook', routes.fbReceivedMsg) // For webhook posts
 
 
-// catch 404 and forward to error handler
+// Catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
   err.status = 404;
   next(err);
 });
 
-// Initialize botkit
-var controller = Botkit.facebookbot({
-    debug: true,
-    access_token: process.env.PAGE_ACCESS_TOKEN,
-    verify_token: process.env.VERIFY_TOKEN,
-});
+// Error handlers
 
-var bot = controller.spawn({
-});
-
-// error handlers
-
-// development error handler
+// Development error handler
 if (app.get('env') === 'development') {
   app.use(function(err, req, res, next) {
     res.status(err.status || 500);
@@ -52,7 +46,7 @@ if (app.get('env') === 'development') {
   });
 }
 
-// production error handler
+// Production error handler
 app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('index', {
