@@ -1,3 +1,5 @@
+var fbHandler = require('../controllers/fbbotcontroller').handler
+
 /*
  * GET home page.
  */
@@ -17,7 +19,7 @@ exports.chat = function (req, res) {
 /*
  * POST Subscribe webhook
  */ 
-exports.webhook = function(req, res) {
+exports.fbSubscribeWebhook = function(req, res) {
     if (req.query['hub.mode'] === 'subscribe' && req.query['hub.verify_token'] === process.env.VERIFY_TOKEN) {
       res.send(req.query['hub.challenge']);
     }
@@ -25,3 +27,8 @@ exports.webhook = function(req, res) {
       res.send('Incorrect verify token');
     }
 };
+
+exports.fbReceivedMsg = function(req, res) {
+	fbHandler(req.body);
+	res.send(200);
+}
