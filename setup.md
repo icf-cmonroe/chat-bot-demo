@@ -44,4 +44,8 @@
 * Fill in the following fields
 ![alt text](https://github.com/kvbutler/images/blob/master/webhook-options.png "Webhook options")
 * Click "Verify and Save"
+
+### Subscribe page events
+* In the facebook developers console under "Webhooks" Select the previously created page in the "Select a Page" dropdown
+![alt text](https://github.com/kvbutler/images/blob/master/subscribe-page-events.png "Subscribe page")subscribe-page-events.png
 * Congrats! Services Connected. ![alt text](https://github.com/kvbutler/images/blob/master/robot-happy.png "Success options")
