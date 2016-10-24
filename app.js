@@ -22,8 +22,8 @@ app.use(express.static(path.join(__dirname, '/public')));
 // Register endpoints
 app.get('/', routes.home);
 app.get('/chat', routes.chat);
-app.get('fbwebhook', routes.fbSubscribeWebhook); // For webhook subscribe
-app.post('fbwebhook', routes.fbReceivedMsg) // For webhook posts
+app.get('/fbwebhook', routes.fbSubscribeWebhook); // For webhook subscribe
+app.post('/fbwebhook', routes.fbReceivedMsg) // For webhook posts
 
 
 // Catch 404 and forward to error handler
