@@ -36,7 +36,7 @@ var handler = function (msg) {
 	// Ensure there is a page subscription
 	if (msg.object === 'page') {
 		// Iterate over each entry and create message for botkit api
-		data.entry.forEach(function(pageEntry) {
+		data.entry.forEach(function(msg.entry) {
 		// Received a normal message
         if (pageEntry.message) {
           message = {
@@ -101,7 +101,7 @@ var handler = function (msg) {
         }
         else {
           controller.log('Got an unexpected message from Facebook: ', pageEntry)
-}
+		}
 		});
 	}
 }
