@@ -15,5 +15,11 @@
   "image": "heroku/nodejs",
   "scripts": {
     "postdeploy": "npm install"
-  }
+  },
+  "addons": [
+    {
+      "plan": "mongolab:shared-single-small",
+      "as": "MONGO"
+    }
+  ]
 }

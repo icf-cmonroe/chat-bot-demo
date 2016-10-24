@@ -19,6 +19,7 @@ app.use(express.static(path.join(__dirname, '/public')));
 // Register endpoints
 app.get('/', routes.home);
 app.get('/chat', routes.chat);
+app.post('webhook', routes.webhook);
 
 
 // catch 404 and forward to error handler
@@ -26,6 +27,16 @@ app.use(function(req, res, next) {
   var err = new Error('Not Found');
   err.status = 404;
   next(err);
+});
+
+// Initialize botkit
+var controller = Botkit.facebookbot({
+    debug: true,
+    access_token: process.env.PAGE_ACCESS_TOKEN,
+    verify_token: process.env.VERIFY_TOKEN,
+});
+
+var bot = controller.spawn({
 });
 
 // error handlers
@@ -44,9 +55,8 @@ if (app.get('env') === 'development') {
 // production error handler
 app.use(function(err, req, res, next) {
   res.status(err.status || 500);
-  res.render('error', {
-    message: err.message,
-    error: {}
+  res.render('index', {
+    title: err.message
   });
 });
 
