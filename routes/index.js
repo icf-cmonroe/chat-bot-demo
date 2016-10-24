@@ -24,4 +24,4 @@ exports.webhook = function(req, res) {
     else {
       res.send('Incorrect verify token');
     }
-});
+};
