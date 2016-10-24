@@ -36,7 +36,7 @@ var handler = function (msg) {
 	// Ensure there is a page subscription
 	if (msg.object === 'page') {
 		// Iterate over each entry and create message for botkit api
-		data.entry.forEach(function(msg.entry) {
+		msg.entry.forEach(function(pageEntry) {
 		// Received a normal message
         if (pageEntry.message) {
           message = {
