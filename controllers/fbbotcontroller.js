@@ -6,7 +6,7 @@ var request = require('request');
 // Init controller
 var controller = botkit.facebookbot({
 	debug: true,
-  	access_token: process.env.FACEBOOK_PAGE_TOKEN,
+  	access_token: process.env.PAGE_ACCESS_TOKEN,
   	verify_token: process.env.VERIFY_TOKEN,
 	storage: mongodbDriver
 });
