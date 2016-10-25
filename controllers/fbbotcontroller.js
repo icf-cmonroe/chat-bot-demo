@@ -50,7 +50,7 @@ controller.hears(['speak', 'talk', 'audio'], 'message_received', function(bot, m
 
 // User wants to see random comic
 controller.hears(['comic'], 'message_received', function(bot, message) {
-    bot.reply(message, getRandomComic());
+    bot.reply(message, getComic());
 });
 
 
