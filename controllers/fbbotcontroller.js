@@ -54,7 +54,7 @@ controller.hears(['comic'], 'message_received', function(bot, message) {
 });
 
 // User wants to conversation history
-controller.hears(['comic'], 'message_received', function(bot, message) {
+controller.hears(['conversation history'], 'message_received', function(bot, message) {
     //bot.reply(message, getComic());
     getUserData(message.id);
 });
@@ -181,8 +181,10 @@ var getComic = function() {
     	console.log('comic response body ' + JSON.stringify(body));
     	var imageUrl = body.img;
     	return createImageMessage(imageUrl);
+  	} else {
+  		console.log(JSON.strigify(error));
   	}
-})
+});
 }
 
 var createImageMessage = function(imageUrl) {
