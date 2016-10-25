@@ -176,7 +176,7 @@ var getComic = function() {
 	var randComic = Math.ceil(numberOfComicsAvailable * Math.random()) + 1;
 	var randomComicUrl = 'http://xkcd.com/' + randComic + '/info.0.json';
 	console.log('rand comic url ' + randomComicUrl);
-	request(randComicUrl, function (error, response, body) {
+	request(randomComicUrl, function (error, response, body) {
   	if (!error && response.statusCode == 200) {
     	console.log('comic response body ' + JSON.stringify(body));
     	var imageUrl = body.img;
