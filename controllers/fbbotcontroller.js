@@ -40,7 +40,7 @@ var handler = function(msg) {
        msg.entry.forEach(function(pageEntry) {
       		console.log('entered first loop');
       		// Iterate over each message
-      		pageEntry.messaging(function (message) {
+      		pageEntry.messaging.forEach(function(message) {
                 console.log('entered second loop');
                 // Received a normal message
                 if (message.message) {
