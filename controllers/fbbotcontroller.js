@@ -168,7 +168,7 @@ var createButtonMessage = function() {
 
 var getComic = function() {
 	var randComic = Math.ceil(numberOfComicsAvailable * Math.random()) + 1;
-	var randomComicUrl = 'http://xkcd.com/' + randComic)+ '/info.0.json';
+	var randomComicUrl = 'http://xkcd.com/' + randComic + '/info.0.json';
 	console.log('rand comic url ' + randomComicUrl);
 	request('http://www.google.com', function (error, response, body) {
   	if (!error && response.statusCode == 200) {
