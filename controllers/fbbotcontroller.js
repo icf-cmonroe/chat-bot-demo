@@ -111,7 +111,7 @@ var handler = function(msg) {
                     controller.log('Got an unexpected message from Facebook: ', message)
                 }
             }
-        });
+        }
     }
 }
 
