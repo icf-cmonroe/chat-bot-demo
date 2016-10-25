@@ -50,7 +50,7 @@ controller.hears(['button(s?)'], 'message_received', function(bot, message) {
 });
 
 // User wants to see image example
-controller.hears(['image', 'what do you look like'], 'message_received', function(bot, message) {
+controller.hears(['^(?!postback)$', 'image', 'what do you look like'], 'message_received', function(bot, message) {
     bot.reply(message, createImageMessage(url + 'images/robot-design.png'));
 });
 
@@ -60,14 +60,14 @@ controller.hears(['speak', 'talk', 'audio'], 'message_received', function(bot, m
 });
 
 // User wants to see random comic
-controller.hears(['comic'], 'message_received', function(bot, message) {
+controller.hears(['^(?!postback)$', 'comic'], 'message_received', function(bot, message) {
     getComic(function(reply) {
     	bot.reply(message, reply);
     });
 });
 
 // User wants to conversation history
-controller.hears(['conversation history'], 'message_received', function(bot, message) {
+controller.hears(['conversation'], 'message_received', function(bot, message) {
     //bot.reply(message, getComic());
     getUserData(message.id);
 });
@@ -75,7 +75,7 @@ controller.hears(['conversation history'], 'message_received', function(bot, mes
 
 // User says anything else
 controller.hears('^(?!postback).*$', 'message_received', function(bot, message) {
-    bot.reply(message, 'I am not able to handle your message, ' + message.match[1]);
+    bot.reply(message, 'I am not able to handle your message, ' + message);
 });
 
 // Facebook webhook handler
