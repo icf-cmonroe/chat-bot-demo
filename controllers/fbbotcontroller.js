@@ -42,7 +42,7 @@ var handler = function(msg) {
             console.log('page entry: ' + JSON.stringify(pageEntry));
             console.log('messaging length: ' + pageEntry.messaging.length);
             for(var i = 0; i < pageEntry.messaging.length; i++) {
-                 cosnole.log('emtered second loop');
+                cosnole.log('entered second loop');
                 var message = pageEntry.messaging[i];
                 // Received a normal message
                 if (message.message) {
