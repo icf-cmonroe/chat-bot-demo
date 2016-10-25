@@ -25,10 +25,16 @@ controller.on('facebook_optin', function(bot, message) {
 
 // Triggered by a button post_back
 controller.on('facebook_postback', function(bot, message) {
-    bot.reply(message, createImageMessage(url + 'images/robot-design.png'));
+    var reply;
     switch(message.payload) {
-    	case('')
+    	case('postback_comic'):
+    		reply = getComic();
+    		break;
+    	case('postback_image_robot')
+    		reply = createImageMessage(url + 'images/robot-design.png');
+    		break;
     }
+    bot.reply(message, reply);
 });
 
 // User sends greetings
