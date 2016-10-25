@@ -1,5 +1,5 @@
 ### Setup Heroku Deploy
-* After forking and cloning this repository to local
+* After forking and cloning this repository to local                        
 ![alt text](https://github.com/kvbutler/images/blob/master/deploy-button.png "Deploy to heroku")
 * Name the app or let Heroku generate an app name, click deploy
 * After deployment click "Manage App"
