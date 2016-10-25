@@ -26,6 +26,9 @@ controller.on('facebook_optin', function(bot, message) {
 // Triggered by a button post_back
 controller.on('facebook_postback', function(bot, message) {
     bot.reply(message, createImageMessage(url + 'images/robot-design.png'));
+    switch(message.payload) {
+    	case('')
+    }
 });
 
 // User sends greetings
@@ -178,8 +181,7 @@ var getComic = function() {
 	request(randomComicUrl, function (error, response, body) {
   	if (!error && response.statusCode == 200) {
     	console.log('body' + body);
-    	body = body.replace('\n', '');
-    	body = body.replace('\'', '');
+    	body = escapeJSON(body);
     	console.log('body rpl ' + body);
     	var obj = JSON.parse(body);
     	var imageUrl = obj.img;
@@ -230,4 +232,17 @@ var getUserData = function(id) {
 		console.log(JSON.stringify(userData));
 	});
 }
+
+var escapeJSON = function (str) {
+  return str
+    .replace(/[\\]/g, '\\\\')
+    .replace(/[\"]/g, '\\\"')
+    .replace(/[\/]/g, '\\/')
+    .replace(/[\b]/g, '\\b')
+    .replace(/[\f]/g, '\\f')
+    .replace(/[\n]/g, '\\n')
+    .replace(/[\r]/g, '\\r')
+    .replace(/[\t]/g, '\\t');
+};
+
 exports.handler = handler;
