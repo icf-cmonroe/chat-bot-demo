@@ -4,7 +4,7 @@ var mongodbDriver = require('botkit-storage-mongo')({
     mongoUri: process.env.MONGODB_URI
 }); // Botkit mongodb driver
 var request = require('request');
-var url = 'https://' + req.get('host');
+var url = 'https://' + process.env.HOST_NAME + '/';
 
 // Init controller
 var controller = botkit.facebookbot({

@@ -36,6 +36,9 @@
 	- For "KEY" type: "VERIFY_TOKEN"
 	- For "VALUE" type: Anything just remeber what it was for later steps
 * Config var 3:
+	- For "KEY" type: "HOST_NAME"
+	- For "VALUE" type: <your heroku app name>.herokuapp.com
+* Config var 4:
 	- During demo
 
 ### Setup webhooks for page subscription
