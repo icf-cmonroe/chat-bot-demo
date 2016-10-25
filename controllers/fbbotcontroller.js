@@ -50,7 +50,7 @@ controller.hears(['button(s?)'], 'message_received', function(bot, message) {
 });
 
 // User wants to see image example
-controller.hears(['^(?!postback)$', 'image', 'what do you look like'], 'message_received', function(bot, message) {
+controller.hears(['image', 'what do you look like'], 'message_received', function(bot, message) {
     bot.reply(message, createImageMessage(url + 'images/robot-design.png'));
 });
 
@@ -60,7 +60,7 @@ controller.hears(['speak', 'talk', 'audio'], 'message_received', function(bot, m
 });
 
 // User wants to see random comic
-controller.hears(['^(?!postback)$', 'comic'], 'message_received', function(bot, message) {
+controller.hears(['comic'], 'message_received', function(bot, message) {
     getComic(function(reply) {
     	bot.reply(message, reply);
     });
@@ -68,7 +68,6 @@ controller.hears(['^(?!postback)$', 'comic'], 'message_received', function(bot, 
 
 // User wants to conversation history
 controller.hears(['conversation'], 'message_received', function(bot, message) {
-    //bot.reply(message, getComic());
     getUserData(message.user);
 });
 
@@ -116,15 +115,7 @@ var handler = function(msg) {
                         }
                     // Send postback to bot controller
                     controller.trigger('facebook_postback', [bot, message])
-                    // Send message to bot controller
-                    message = {
-                        text: msg.postback.payload,
-                        user: msg.sender.id,
-                        channel: msg.sender.id,
-                        timestamp: msg.timestamp
-                    }
-
-                    controller.receiveMessage(bot, message)
+                    
                 }
                 // "Send to Messanger" plugin support
                 else if (msg.optin) {
