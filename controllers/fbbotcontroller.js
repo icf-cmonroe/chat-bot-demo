@@ -37,12 +37,10 @@ controller.hears(['image'], 'message_received', function(bot, message) {
     bot.reply(message, createImageMessage(url + 'images/robot-design.png'));
 });
 
-// User wants to see image example
+// User wants to see audio example
 controller.hears(['speak', 'talk', 'audio'], 'message_received', function(bot, message) {
     bot.reply(message, createAudioMessage(url + 'audio/bot-speak.mp3'));
 });
-
-// User wants to hear audio example
 
 
 // User says anything else
@@ -161,21 +159,23 @@ var createButtonMessage = function() {
 
 var createImageMessage = function(imageUrl) {
     console.log('Image url: ' + imgUrl);
-    return attachment: {
+    return { attachment: {
     	type: "image",
     	payload: {
         	url: imageUrl
         }
     }
 }
+}
 
 var createAudioMessage = function(audioUrl) {
-  return attachment: {
+  return { attachment: {
         type: "audio",
         payload: {
           url:audioUrl
         }
 	}
+}
 }
 
 
