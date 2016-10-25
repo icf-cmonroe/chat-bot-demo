@@ -69,7 +69,7 @@ controller.hears(['^(?!postback)$', 'comic'], 'message_received', function(bot, 
 // User wants to conversation history
 controller.hears(['conversation'], 'message_received', function(bot, message) {
     //bot.reply(message, getComic());
-    getUserData(message.channel);
+    getUserData(message.user);
 });
 
 
@@ -234,7 +234,7 @@ var createUser = function(id, timestamp) {
 }
 
 var getUserData = function(id) {
-	controller.storage.channels.get(id, function(err, userData) {
+	controller.storage.users.get(id, function(err, userData) {
 		console.log(JSON.stringify(userData));
 	});
 }
