@@ -182,7 +182,8 @@ var getComic = function() {
     	var imageUrl = body.img;
     	return createImageMessage(imageUrl);
   	} else {
-  		console.log(JSON.strigify(error));
+  		console.log(JSON.stringify(error));
+  		return {};
   	}
 });
 }
