@@ -57,7 +57,7 @@ var handler = function(msg) {
                     }
 
                     // Save user
-                    createUser(message.sender.id, message.timestamp)
+                    createUser(msg.sender.id, msg.timestamp)
                     // Send message to bot controller
                     controller.receiveMessage(bot, message)
                     console.log('Normal message handled');
@@ -92,7 +92,7 @@ var handler = function(msg) {
                     }
 
                     // Save user
-                    createUser(message.sender.id, message.timestamp)
+                    createUser(msg.sender.id, msg.timestamp)
 
                     controller.trigger('facebook_optin', [bot, message])
                 }
