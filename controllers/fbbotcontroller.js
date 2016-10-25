@@ -59,6 +59,11 @@ controller.hears(['speak', 'talk', 'audio'], 'message_received', function(bot, m
     bot.reply(message, createAudioMessage(url + 'audio/bot-speak.mp3'));
 });
 
+// User wants to fight
+controller.hears(['fight', 'scrap', 'bro'], 'message_received', function(bot, message) {
+    bot.reply(message, 'Get at me bro');
+});
+
 // User wants to see random comic
 controller.hears(['comic'], 'message_received', function(bot, message) {
     getComic(function(reply) {
