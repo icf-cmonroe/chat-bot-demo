@@ -242,7 +242,7 @@ var getUserData = function(id) {
 
 var escapeJSON = function (str) {
   return str
-    .replace(/\r?\n|\r/g, '');
+    .replace(/\\r?\\n|\\r/g, '');
 };
 
 exports.handler = handler;
