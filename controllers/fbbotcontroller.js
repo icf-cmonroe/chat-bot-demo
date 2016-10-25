@@ -111,4 +111,8 @@ var handler = function(msg) {
     }
 }
 
+var createUser = function(id, timestamp) {
+	
+}
+
 exports.handler = handler;
