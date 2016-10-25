@@ -55,7 +55,7 @@ controller.hears(['comic'], 'message_received', function(bot, message) {
 
 
 // User says anything else
-controller.hears('([^postback])', 'message_received', function(bot, message) {
+controller.hears('^(?!postback).*$', 'message_received', function(bot, message) {
     bot.reply(message, 'I am not able to handle your message, ' + message.match[1]);
 });
 
@@ -169,8 +169,10 @@ var createButtonMessage = function() {
 var getComic = function() {
 	var randComic = numberOfComicsAvailable * Math.rand() + 1;
 	var randomComicUrl = 'http://xkcd.com/' + randComic + '/info.0.json';
+	console.log('rand comic url ' + randomComicUrl);
 	request('http://www.google.com', function (error, response, body) {
   	if (!error && response.statusCode == 200) {
+    	console.log('comic response body ' + JSON.stringify(body));
     	var imageUrl = body.img;
     	return createImageMessage(imageUrl);
   	}
