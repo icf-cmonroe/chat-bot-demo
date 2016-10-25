@@ -180,10 +180,10 @@ var getComic = function() {
 		json: true
 	}, function (error, response, body) {
   	if (!error && response.statusCode == 200) {
-    	var imageUrl = json.img;
+    	var imageUrl = body.img;
     	return createImageMessage(imageUrl);
   	} else {
-  		console.log(JSON.stringify(error));
+  		console.log(error);
   		return {};
   	}
 });
