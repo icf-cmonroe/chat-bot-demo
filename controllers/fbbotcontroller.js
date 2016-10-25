@@ -184,14 +184,10 @@ var createButtonMessage = function() {
 var getComic = function() {
 	var randComic = Math.ceil(numberOfComicsAvailable * Math.random()) + 1;
 	var randomComicUrl = 'http://xkcd.com/' + randComic + '/info.0.json';
-	request(randomComicUrl, function (error, response, body) {
+	request({url: randomComicUrl, json: true }, function (error, response, body) {
   	if (!error && response.statusCode == 200) {
     	console.log('body' + body);
-    	console.log('typeof body: ' + typeof body);
-    	var escapeBody = escapeJSON(body);
-    	console.log('body rpl ' + escapeBody);
-    	var obj = JSON.parse(escapeBody);
-    	var imageUrl = obj.img;
+    	var imageUrl = body.img;
     	return createImageMessage(imageUrl);
   	} else {
   		console.log(error);
@@ -239,10 +235,5 @@ var getUserData = function(id) {
 		console.log(JSON.stringify(userData));
 	});
 }
-
-var escapeJSON = function (str) {
-  return str
-    .replace(/\\r?\\n|\\r/g, '');
-};
 
 exports.handler = handler;
