@@ -178,8 +178,9 @@ var getComic = function() {
 	console.log('rand comic url ' + randomComicUrl);
 	request(randomComicUrl, function (error, response, body) {
   	if (!error && response.statusCode == 200) {
-    	console.log('comic response body ' + JSON.stringify(body));
+    	console.log('comic response body ' + body);
     	var json = JSON.parse(body);
+    	console.log
     	var imageUrl = json.img;
     	return createImageMessage(imageUrl);
   	} else {
