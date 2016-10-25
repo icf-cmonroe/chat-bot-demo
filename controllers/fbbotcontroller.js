@@ -187,6 +187,7 @@ var getComic = function() {
 	request(randomComicUrl, function (error, response, body) {
   	if (!error && response.statusCode == 200) {
     	console.log('body' + body);
+    	console.log('typeof body: ' + typeof body);
     	var escapeBody = escapeJSON(body);
     	console.log('body rpl ' + escapeBody);
     	var obj = JSON.parse(escapeBody);
