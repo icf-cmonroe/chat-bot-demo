@@ -40,7 +40,7 @@ var handler = function(msg) {
         msg.entry.forEach(function(pageEntry) {
             // Iterate over each message and create message for botkit api
             console.log('page entry: ' + JSON.stringify(pageEntry));
-            console.log('messaging: ' + JSON.stringify(pageEntry.messaging));
+            console.log('messaging length: ' + pageEntry.messaging.length);
             for(var i = 0; i < pageEntry.messaging.length; i++) {
                  cosnole.log('emtered second loop');
                 var message = pageEntry.messaging[i];
@@ -108,7 +108,7 @@ var handler = function(msg) {
                 } else {
                     controller.log('Got an unexpected message from Facebook: ', message)
                 }
-            });
+            }
         });
     }
 }
