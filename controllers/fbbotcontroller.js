@@ -69,13 +69,13 @@ controller.hears(['^(?!postback)$', 'comic'], 'message_received', function(bot, 
 // User wants to conversation history
 controller.hears(['conversation'], 'message_received', function(bot, message) {
     //bot.reply(message, getComic());
-    getUserData(message.id);
+    getUserData(message.user);
 });
 
 
 // User says anything else
 controller.hears('^(?!postback).*$', 'message_received', function(bot, message) {
-    bot.reply(message, 'I am not able to handle your message, ' + message);
+    bot.reply(message, 'I am not able to handle your message, ' + message.text);
 });
 
 // Facebook webhook handler
