@@ -187,7 +187,7 @@ var createUser = function(id, timestamp) {
     }
     // If null create new user
     else if (!user) {
-    	controller.storage.users.save({id: id, created_at: ts})
+    	controller.storage.users.save({id: id, created_at: timestamp})
     }
 });
 }
