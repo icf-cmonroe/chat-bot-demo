@@ -23,6 +23,7 @@ controller.on('facebook_optin', function(bot, message) {
 
 // User sends greetings
 controller.hears(['hello', 'hi', 'hey'], 'message_received', function(bot, message) {
+    console.log('Greeting received');
     bot.reply(message, 'Hey there.');
 });
 
@@ -40,52 +41,54 @@ var handler = function(msg) {
        msg.entry.forEach(function(pageEntry) {
       		console.log('entered first loop');
       		// Iterate over each message
-      		pageEntry.messaging.forEach(function(message) {
+      		pageEntry.messaging.forEach(function(msg) {
                 console.log('entered second loop');
                 // Received a normal message
-                if (message.message) {
+                if (msg.message) {
+                    console.log('Normal message received');
                     message = {
-                        text: message.message.text,
-                        user: message.sender.id,
-                        channel: message.sender.id,
-                        timestamp: message.timestamp,
-                        seq: message.message.seq,
-                        mid: message.message.mid,
-                        attachments: message.message.attachments
+                        text: msg.message.text,
+                        user: msg.sender.id,
+                        channel: msg.sender.id,
+                        timestamp: msg.timestamp,
+                        seq: msg.message.seq,
+                        mid: msg.message.mid,
+                        attachments: msg.message.attachments
                     }
 
                     // Save user
                     createUser(message.sender.id, message.timestamp)
-                        // Send message to bot controller
+                    // Send message to bot controller
                     controller.receiveMessage(bot, message)
+                    console.log('Normal message handled');
                 }
                 // User clicks postback action (button)
-                else if (message.postback) {
+                else if (msg.postback) {
                     message = {
-                            payload: message.postback.payload,
-                            user: message.sender.id,
-                            channel: message.sender.id,
-                            timestamp: message.timestamp
+                            payload: msg.postback.payload,
+                            user: msg.sender.id,
+                            channel: msg.sender.id,
+                            timestamp: msg.timestamp
                         }
                     // Send postback to bot controller
                     controller.trigger('facebook_postback', [bot, message])
                     // Send message to bot controller
                     message = {
-                        text: message.postback.payload,
-                        user: message.sender.id,
-                        channel: message.sender.id,
-                        timestamp: message.timestamp
+                        text: msg.postback.payload,
+                        user: msg.sender.id,
+                        channel: msg.sender.id,
+                        timestamp: msg.timestamp
                     }
 
                     controller.receiveMessage(bot, message)
                 }
                 // "Send to Messanger" plugin support
-                else if (message.optin) {
+                else if (msg.optin) {
                     message = {
-                        optin: message.optin,
-                        user: message.sender.id,
-                        channel: message.sender.id,
-                        timestamp: message.timestamp
+                        optin: msg.optin,
+                        user: msg.sender.id,
+                        channel: msg.sender.id,
+                        timestamp: msg.timestamp
                     }
 
                     // Save user
@@ -94,17 +97,17 @@ var handler = function(msg) {
                     controller.trigger('facebook_optin', [bot, message])
                 }
                 // Message delivered callback
-                else if (message.delivery) {
+                else if (msg.delivery) {
                     message = {
-                        optin: message.delivery,
-                        user: message.sender.id,
-                        channel: message.sender.id,
-                        timestamp: message.timestamp
+                        optin: msg.delivery,
+                        user: msg.sender.id,
+                        channel: msg.sender.id,
+                        timestamp: msg.timestamp
                     }
 
                     controller.trigger('message_delivered', [bot, message])
                 } else {
-                    controller.log('Got an unexpected message from Facebook: ', message)
+                    controller.log('Got an unexpected message from Facebook: ', msg)
                 }
             });
         });
@@ -112,7 +115,7 @@ var handler = function(msg) {
 }
 
 var createUser = function(id, timestamp) {
-	
+
 }
 
 exports.handler = handler;
