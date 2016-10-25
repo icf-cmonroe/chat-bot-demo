@@ -37,6 +37,11 @@ controller.hears(['image'], 'message_received', function(bot, message) {
     bot.reply(message, createImageMessage(url + 'images/robot-design.png'));
 });
 
+// User wants to see image example
+controller.hears(['speak', 'talk', 'audio'], 'message_received', function(bot, message) {
+    bot.reply(message, createAudioMessage(url + 'audio/bot-speak.mp3'));
+});
+
 // User wants to hear audio example
 
 
