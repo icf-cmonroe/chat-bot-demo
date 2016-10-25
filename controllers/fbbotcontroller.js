@@ -41,8 +41,9 @@ var handler = function(msg) {
             // Iterate over each message and create message for botkit api
             console.log('page entry: ' + JSON.stringify(pageEntry));
             console.log('messaging: ' + JSON.stringify(pageEntry.messaging));
-            pageEntry.messaging.forEach(function(message) {
+            for(var i = 0; i < pageEntry.messaging.length; i++) {
                  cosnole.log('emtered second loop');
+                var message = pageEntry.messaging[i];
                 // Received a normal message
                 if (message.message) {
                     message = {
