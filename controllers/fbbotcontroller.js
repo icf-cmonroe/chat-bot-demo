@@ -4,6 +4,7 @@ var mongodbDriver = require('botkit-storage-mongo')({
     mongoUri: process.env.MONGODB_URI
 }); // Botkit mongodb driver
 var request = require('request');
+var url = var fullUrl = req.protocol + '://' + req.get('host');
 
 // Init controller
 var controller = botkit.facebookbot({
@@ -23,13 +24,22 @@ controller.on('facebook_optin', function(bot, message) {
 
 // User sends greetings
 controller.hears(['hello', 'hi', 'hey'], 'message_received', function(bot, message) {
-    console.log('Greeting received');
     bot.reply(message, 'Hey there.');
+});
+
+// User wants to see buttons example
+controller.hears(['buttons'], 'message_received', function(bot, message) {
+    bot.reply(message, createButtonMessage());
+});
+
+// User wants to see image example
+controller.hears(['image'], 'message_received', function(bot, message) {
+    bot.reply(message, createImageMessage(url + 'images/robot-design.png'));
 });
 
 // User says anything else
 controller.hears('(.*)', 'message_received', function(bot, message) {
-    bot.reply(message, 'you said ' + message.match[1]);
+    bot.reply(message, 'I am not able to handle your message, ' + message.match[1]);
 });
 
 // Facebook webhook handler
@@ -114,8 +124,55 @@ var handler = function(msg) {
     }
 }
 
-var createUser = function(id, timestamp) {
+// Creates a sample button message
+var createButtonMessage = function() {
+  var attachment = {
+      attachment: {
+        type: "template",
+        payload: {
+          template_type: "button",
+          text: "An example button group",
+          buttons:[{
+            type: "web_url",
+            url: "https://github.com/kvbutler/chat-bot-demo",
+            title: "Open Git Page"
+          }, {
+            type: "postback",
+            title: "Tell a joke",
+            payload: "trigger_joke"
+          }, {
+            type: "postback",
+            title: "Send me an image",
+            payload: "send_robot_image"
+          }]
+        }
+      }
+    };
+  return attachment;
+}
 
+var createImageMessage = function(imageUrl) {
+    console.log('Image url: ' + imgUrl);
+    return attachment: {
+    	type: "image",
+    	payload: {
+        	url: imageUrl
+        }
+    }
+}
+
+
+var createUser = function(id, timestamp) {
+	// Get user
+	controller.storage.users.get(id, function (err, user) {
+    if (err) {
+      	console.log(err)
+    }
+    // If null create new user
+    else if (!user) {
+    	controller.storage.users.save({id: id, created_at: ts})
+    }
+});
 }
 
 exports.handler = handler;
