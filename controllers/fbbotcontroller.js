@@ -5,6 +5,7 @@ var mongodbDriver = require('botkit-storage-mongo')({
 }); // Botkit mongodb driver
 var request = require('request');
 var url = 'https://' + process.env.HOST_NAME + '/';
+var numberOfComicsAvailable = 1750; // The number of comics available on comic api
 
 // Init controller
 var controller = botkit.facebookbot({
@@ -38,7 +39,7 @@ controller.hears(['button(s?)'], 'message_received', function(bot, message) {
 });
 
 // User wants to see image example
-controller.hears(['image'], 'message_received', function(bot, message) {
+controller.hears(['image', 'what do you look like'], 'message_received', function(bot, message) {
     bot.reply(message, createImageMessage(url + 'images/robot-design.png'));
 });
 
@@ -47,9 +48,14 @@ controller.hears(['speak', 'talk', 'audio'], 'message_received', function(bot, m
     bot.reply(message, createAudioMessage(url + 'audio/bot-speak.mp3'));
 });
 
+// User wants to see random comic
+controller.hears(['comic'], 'message_received', function(bot, message) {
+    bot.reply(message, getRandomComic());
+});
+
 
 // User says anything else
-controller.hears('(.*)', 'message_received', function(bot, message) {
+controller.hears('([^postback])', 'message_received', function(bot, message) {
     bot.reply(message, 'I am not able to handle your message, ' + message.match[1]);
 });
 
@@ -147,17 +153,28 @@ var createButtonMessage = function() {
             title: "Open Git Page"
           }, {
             type: "postback",
-            title: "Tell a joke",
-            payload: "send_joke"
+            title: "Show me a comic",
+            payload: "postback_comic"
           }, {
             type: "postback",
             title: "Send me an image",
-            payload: "send_robot_image"
+            payload: "postback_image_robot"
           }]
         }
       }
     };
   return attachment;
+}
+
+var getComic = function() {
+	var randComic = numberOfComicsAvailable * Math.rand() + 1;
+	var randomComicUrl = 'http://xkcd.com/' + randComic + '/info.0.json';
+	request('http://www.google.com', function (error, response, body) {
+  	if (!error && response.statusCode == 200) {
+    	var imageUrl = body.img;
+    	return createImageMessage(imageUrl);
+  	}
+})
 }
 
 var createImageMessage = function(imageUrl) {
