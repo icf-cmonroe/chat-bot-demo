@@ -53,6 +53,12 @@ controller.hears(['comic'], 'message_received', function(bot, message) {
     bot.reply(message, getComic());
 });
 
+// User wants to conversation history
+controller.hears(['comic'], 'message_received', function(bot, message) {
+    //bot.reply(message, getComic());
+    getUserData(message.id);
+});
+
 
 // User says anything else
 controller.hears('^(?!postback).*$', 'message_received', function(bot, message) {
@@ -170,7 +176,7 @@ var getComic = function() {
 	var randComic = Math.ceil(numberOfComicsAvailable * Math.random()) + 1;
 	var randomComicUrl = 'http://xkcd.com/' + randComic + '/info.0.json';
 	console.log('rand comic url ' + randomComicUrl);
-	request('http://www.google.com', function (error, response, body) {
+	request(randComicUrl, function (error, response, body) {
   	if (!error && response.statusCode == 200) {
     	console.log('comic response body ' + JSON.stringify(body));
     	var imageUrl = body.img;
@@ -213,4 +219,9 @@ var createUser = function(id, timestamp) {
 });
 }
 
+var getUserData = function(id) {
+	controller.storage.users.get(id, function(err, userData) {
+		console.log(JSON.stringify(userData));
+	});
+}
 exports.handler = handler;
