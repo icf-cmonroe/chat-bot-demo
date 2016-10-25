@@ -25,7 +25,7 @@ controller.on('facebook_optin', function(bot, message) {
 
 // Triggered by a button post_back
 controller.on('facebook_postback', function(bot, message) {
-    var reply;
+    var reply = '';
     switch(message.payload) {
     	case('postback_comic'):
     		reply = getComic();
