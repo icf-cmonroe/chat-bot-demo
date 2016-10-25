@@ -22,13 +22,18 @@ controller.on('facebook_optin', function(bot, message) {
     bot.reply(message, 'Welcome, friend');
 });
 
+// Triggered by a button post_back
+controller.on('facebook_postback', function(bot, message) {
+    bot.reply(message, createImageMessage(url + 'images/robot-design.png'));
+});
+
 // User sends greetings
 controller.hears(['hello', 'hi', 'hey'], 'message_received', function(bot, message) {
     bot.reply(message, 'Hey there.');
 });
 
 // User wants to see buttons example
-controller.hears(['buttons'], 'message_received', function(bot, message) {
+controller.hears(['button(s?)'], 'message_received', function(bot, message) {
     bot.reply(message, createButtonMessage());
 });
 
@@ -55,10 +60,8 @@ var handler = function(msg) {
     if (msg.object === 'page') {
         // Iterate over each entry
        msg.entry.forEach(function(pageEntry) {
-      		console.log('entered first loop');
       		// Iterate over each message
       		pageEntry.messaging.forEach(function(msg) {
-                console.log('entered second loop');
                 // Received a normal message
                 if (msg.message) {
                     console.log('Normal message received');
@@ -145,7 +148,7 @@ var createButtonMessage = function() {
           }, {
             type: "postback",
             title: "Tell a joke",
-            payload: "trigger_joke"
+            payload: "send_joke"
           }, {
             type: "postback",
             title: "Send me an image",
@@ -158,7 +161,6 @@ var createButtonMessage = function() {
 }
 
 var createImageMessage = function(imageUrl) {
-    console.log('Image url: ' + imgUrl);
     return { attachment: {
     	type: "image",
     	payload: {
