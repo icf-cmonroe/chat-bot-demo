@@ -42,7 +42,7 @@ var handler = function(msg) {
             // Iterate over each message and create message for botkit api
             console.log('page entry: ' + JSON.stringify(pageEntry));
             console.log('messaging length: ' + pageEntry.messaging.length);
-            console.log('first message: ' + JSON.stringify(pageEntry.messaging[0]);
+            console.log('first message: ' + JSON.stringify(pageEntry.messaging[0]));
             for(var j = 0; j < pageEntry.messaging.length; j++) {
                 cosnole.log('entered second loop');
                 var message = pageEntry.messaging[j];
