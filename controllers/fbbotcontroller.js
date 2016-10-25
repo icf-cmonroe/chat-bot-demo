@@ -187,9 +187,9 @@ var getComic = function() {
 	request(randomComicUrl, function (error, response, body) {
   	if (!error && response.statusCode == 200) {
     	console.log('body' + body);
-    	body = escapeJSON(body);
-    	console.log('body rpl ' + body);
-    	var obj = JSON.parse(body);
+    	var escapeBody = escapeJSON(body);
+    	console.log('body rpl ' + escapeBody);
+    	var obj = JSON.parse(escapeBody);
     	var imageUrl = obj.img;
     	return createImageMessage(imageUrl);
   	} else {
@@ -241,7 +241,7 @@ var getUserData = function(id) {
 
 var escapeJSON = function (str) {
   return str
-    .replace(/[\n]/g, '');
+    .replace(/\r?\n|\r/g, '');
 };
 
 exports.handler = handler;
