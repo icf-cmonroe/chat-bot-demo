@@ -28,13 +28,15 @@ controller.on('facebook_postback', function(bot, message) {
     var reply = '';
     switch(message.payload) {
     	case 'postback_comic':
-    		reply = getComic();
+    		reply = getComic(function(comicReply){
+    			bot.reply(message, comicReply);
+    		});
     		break;
     	case 'postback_image_robot':
     		reply = createImageMessage(url + 'images/robot-design.png');
+    		bot.reply(message, reply);
     		break;
     }
-    bot.reply(message, reply);
 });
 
 // User sends greetings
@@ -59,7 +61,9 @@ controller.hears(['speak', 'talk', 'audio'], 'message_received', function(bot, m
 
 // User wants to see random comic
 controller.hears(['comic'], 'message_received', function(bot, message) {
-    bot.reply(message, getComic());
+    getComic(function(reply) {
+    	bot.reply(message, reply);
+    });
 });
 
 // User wants to conversation history
@@ -181,16 +185,13 @@ var createButtonMessage = function() {
   return attachment;
 }
 
-var getComic = function() {
+var getComic = function(callback) {
 	var randComic = Math.ceil(numberOfComicsAvailable * Math.random()) + 1;
 	var randomComicUrl = 'http://xkcd.com/' + randComic + '/info.0.json';
 	request({url: randomComicUrl, json: true }, function (error, response, body) {
   	if (!error && response.statusCode == 200) {
-    	console.log('body' + body);
-    	console.log('body string ' + JSON.stringify(body));
-    	console.log('body img ' + body.img);
     	var imageUrl = body.img;
-    	return createImageMessage(imageUrl);
+    	return callback(createImageMessage(imageUrl));
   	} else {
   		console.log(error);
   		return {};
