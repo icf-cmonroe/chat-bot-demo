@@ -175,12 +175,14 @@ var createButtonMessage = function() {
 var getComic = function() {
 	var randComic = Math.ceil(numberOfComicsAvailable * Math.random()) + 1;
 	var randomComicUrl = 'http://xkcd.com/' + randComic + '/info.0.json';
-	request({ 
-		uri: randomComicUrl,
-		json: true
-	}, function (error, response, body) {
+	request(randomComicUrl, function (error, response, body) {
   	if (!error && response.statusCode == 200) {
-    	var imageUrl = body.img;
+    	console.log('body' + body);
+    	body = body.replaceAll('\n', '');
+    	body = body.replaceAll('\'', '');
+    	console.log('body rpl ' + body);
+    	var obj = JSON.parse(body);
+    	var imageUrl = json.img;
     	return createImageMessage(imageUrl);
   	} else {
   		console.log(error);
