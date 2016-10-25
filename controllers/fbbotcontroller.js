@@ -37,15 +37,11 @@ var handler = function(msg) {
     // Ensure there is a page subscription
     if (msg.object === 'page') {
         // Iterate over each entry
-        for(var i = 0; i < msg.entry.length; i++) {
-        	var pageEntry = msg.entry[i];
-            // Iterate over each message and create message for botkit api
-            console.log('page entry: ' + JSON.stringify(pageEntry));
-            console.log('messaging length: ' + pageEntry.messaging.length);
-            console.log('first message: ' + JSON.stringify(pageEntry.messaging[0]));
-            for(var j = 0; j < pageEntry.messaging.length; j++) {
-                cosnole.log('entered second loop');
-                var message = pageEntry.messaging[j];
+       msg.entry.forEach(function(pageEntry) {
+      		console.log('entered first loop');
+      		// Iterate over each message
+      		pageEntry.messaging(function (message) {
+                console.log('entered second loop');
                 // Received a normal message
                 if (message.message) {
                     message = {
@@ -110,8 +106,8 @@ var handler = function(msg) {
                 } else {
                     controller.log('Got an unexpected message from Facebook: ', message)
                 }
-            }
-        }
+            });
+        });
     }
 }
 
