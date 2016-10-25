@@ -4,7 +4,7 @@ var mongodbDriver = require('botkit-storage-mongo')({
     mongoUri: process.env.MONGODB_URI
 }); // Botkit mongodb driver
 var request = require('request');
-var url = var fullUrl = req.protocol + '://' + req.get('host');
+var url = 'https://' + req.get('host');
 
 // Init controller
 var controller = botkit.facebookbot({
@@ -36,6 +36,9 @@ controller.hears(['buttons'], 'message_received', function(bot, message) {
 controller.hears(['image'], 'message_received', function(bot, message) {
     bot.reply(message, createImageMessage(url + 'images/robot-design.png'));
 });
+
+// User wants to hear audio example
+
 
 // User says anything else
 controller.hears('(.*)', 'message_received', function(bot, message) {
@@ -159,6 +162,15 @@ var createImageMessage = function(imageUrl) {
         	url: imageUrl
         }
     }
+}
+
+var createAudioMessage = function(audioUrl) {
+  return attachment: {
+        type: "audio",
+        payload: {
+          url:audioUrl
+        }
+	}
 }
 
 
