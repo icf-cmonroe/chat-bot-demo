@@ -27,10 +27,10 @@ controller.on('facebook_optin', function(bot, message) {
 controller.on('facebook_postback', function(bot, message) {
     var reply = '';
     switch(message.payload) {
-    	case('postback_comic'):
+    	case 'postback_comic':
     		reply = getComic();
     		break;
-    	case('postback_image_robot')
+    	case 'postback_image_robot':
     		reply = createImageMessage(url + 'images/robot-design.png');
     		break;
     }
